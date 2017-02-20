@@ -1,0 +1,8 @@
+<h1>All Categories</h1>
+
+<% @categories.each do |category| %>
+<%= link_to "#{category.title}", category_gifs_path(category) %><br />
+<%= button_to "Delete", category_path(category), method: :delete %><br />
+<% end %>
+
+<%= link_to "Create a Category", new_category_path %>

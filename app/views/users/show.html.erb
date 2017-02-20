@@ -1,0 +1,8 @@
+<h1 class="greeting">Welcome <%= @user.username %></h1>
+
+<%#= link_to "My Favorites", user_favorite_ %>
+
+<div class="favorites">
+  <%= button_to "My Favorites", user_favorite_gifs_path(current_user), method: :get %>
+</div>
+<%= button_to "Logout", logout_path, method: :delete %>

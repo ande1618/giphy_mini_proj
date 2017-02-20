@@ -1,0 +1,11 @@
+<h1>Create a Gif</h1>
+<%= link_to "Create a Category", new_category_path %><br /><br />
+<%= form_tag(gifs_path) do %>
+<%= label_tag :category %>
+<%= collection_select(:category, :category_id, @categories, :id, :title) %>
+<%#= label_tag :image_path %>
+<%#= text_field_tag :image_path %>
+<%= label_tag :search %>
+<%= text_field_tag :search %>
+<%= submit_tag "Generate Gif" %>
+<% end %>

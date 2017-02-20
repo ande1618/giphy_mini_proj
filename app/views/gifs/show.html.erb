@@ -1,0 +1,9 @@
+<h1><%= @gif.category.title %> <%= @gif.id %></h1>
+
+<a href="category_gif_path(@gif)">
+<img src="<%= @gif.image_path %>">
+</a>
+<% if current_user %>
+  <%= button_to "Add to Favorites",   user_favorite_gif_path(@gif, type: "favorite"), method: :put %>
+  <%= button_to "Remove from Favorites", user_favorite_gif_path(@gif, type: "unfavorite"), method: :put %>
+<% end %>

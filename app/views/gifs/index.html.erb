@@ -1,0 +1,21 @@
+ <h1>Gifs Index</h1>
+
+ <ul>
+<% @gifs.each do |gif| %>
+<li>
+<img src="<%= gif.image_path %>">
+</a>
+<div class="gif">
+
+<%- unless current_user.favorite_gifs.exists?(id: gif.id) -%>
+<%= button_to 'Add to favorites', user_favorite_gifs_path(current_user, gif_id: gif), method: :post %>
+<%- else -%>
+<%= button_to 'Remove from favorites', user_favorite_gif_path(current_user, gif), method: :delete %>
+<%- end -%>
+</li>
+</div>
+<% end %>
+</ul>
+
+<%= link_to 'My Favorites', user_favorite_gifs_path(current_user) %>
+<%= link_to 'Create a Gif', new_gif_path %>
