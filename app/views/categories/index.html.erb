@@ -2,7 +2,8 @@
 
 <% @categories.each do |category| %>
 <%= link_to "#{category.title}", category_gifs_path(category) %><br />
-<%= button_to "Delete", category_path(category), method: :delete %><br />
+<%= button_to "Delete Category", category_path(category), method: :delete %><br />
+<%= button_to "Create a Gif", new_category_gif_path(category), method: :get %><br />
 <% end %>
 
 <%= link_to "Create a Category", new_category_path %>

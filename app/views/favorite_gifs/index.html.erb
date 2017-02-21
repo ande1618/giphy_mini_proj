@@ -1,9 +1,12 @@
 <h1><%= current_user.username %>'s Favorites</h1>
 
-<% current_user.favorite_gifs.each do |gif| %>
-<img src="<%= gif.image_path %>">
-</a>
-<%= button_to 'Remove from favorites', user_favorite_gif_path(current_user, gif), method: :delete %>
-<% end %>
+<div class="row">
+  <% current_user.favorite_gifs.each do |gif| %>
+<div class="col s6 push-s1">
+  <img src="<%= gif.image_path %>">
+  <%= button_to 'Remove from favorites', user_favorite_gif_path(current_user, gif), method: :delete %>
+</div>
+  <% end %><br>
+</div>
 
-<%= link_to "All Gifs", gifs_path %>
+  <%#= link_to "All Gifs", gifs_path %>

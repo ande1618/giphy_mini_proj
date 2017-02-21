@@ -1,21 +1,20 @@
- <h1>Gifs Index</h1>
-
- <ul>
-<% @gifs.each do |gif| %>
-<li>
-<img src="<%= gif.image_path %>">
-</a>
-<div class="gif">
-
-<%- unless current_user.favorite_gifs.exists?(id: gif.id) -%>
-<%= button_to 'Add to favorites', user_favorite_gifs_path(current_user, gif_id: gif), method: :post %>
-<%- else -%>
-<%= button_to 'Remove from favorites', user_favorite_gif_path(current_user, gif), method: :delete %>
-<%- end -%>
-</li>
+<div class="col s12 m4 l2">
+  <h1>Gifs Index</h1>
 </div>
-<% end %>
-</ul>
 
-<%= link_to 'My Favorites', user_favorite_gifs_path(current_user) %>
+ <div class="row">
+   <% @gifs.each do |gif| %>
+   <div class="col s6 push-s1">
+        <img src="<%= gif.image_path %>">
+
+        <%- unless current_user.favorite_gifs.exists?(id: gif.id) -%>
+          <%= button_to 'Add to favorites', user_favorite_gifs_path(current_user, gif_id: gif), method: :post %>
+        <%- else -%>
+          <%= button_to 'Remove from favorites', user_favorite_gif_path(current_user, gif), method: :delete %>
+        <%- end -%>
+    </div>
+  <% end %>
+ </div>
+
+<%= link_to 'My Favorites', user_favorite_gifs_path(current_user) %><br /><br />
 <%= link_to 'Create a Gif', new_gif_path %>

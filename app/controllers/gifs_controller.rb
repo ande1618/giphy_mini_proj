@@ -20,15 +20,9 @@ class GifsController < ApplicationController
   end
 
   def create
-    # if :image_path
-    #   @gif = Gif.new(gif_params)
-    #     @gif.save
-    #     flash[:success] = "Gif created successfully"
-    #     redirect_to gifs_path
-    # else
       category = Category.find(params[:category][:category_id])
       query = params[:search]
-        response = Faraday.get("http://api.giphy.com/v1/gifs/search?q=#{query}&api_key=")
+        response = Faraday.get("http://api.giphy.com/v1/gifs/search?q=#{query}&api_key=dc6zaTOxFJmzC")
         body = response.body
         parsed = JSON.parse(body, :symbolize_names => true)
         img_url = parsed[:data].sample[:images][:original].fetch(:url)
@@ -36,7 +30,6 @@ class GifsController < ApplicationController
         @gif = category.gifs.create(image_path: img_url)
         flash[:success] = "Gif created successfully"
         redirect_to gifs_path
-    # end
   end
 
   def show

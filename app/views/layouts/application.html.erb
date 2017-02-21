@@ -12,6 +12,31 @@
     <% flash.each do |type, message| %>
       <%= content_tag :div, message, class: "flash_#{type}" %>
     <% end %>
+
+<!-- Navbar -->
+    <!-- Dropdown Structure -->
+<ul id="dropdown1" class="dropdown-content">
+  <% all_categories.each do |category| %>
+  <li><%=link_to category.title, category_gifs_path(category) %></li>
+  <% end %>
+</ul>
+<nav>
+  <div class="nav-wrapper lime accent-2 blue-text">
+    <a class="brand-logo"><%= link_to "Gifs", gifs_path %></a>
+    <ul class="right hide-on-med-and-down">
+      <!-- Dropdown Trigger -->
+      <li><a class="dropdown-button" data-activates="dropdown1">Categories<i class="material-icons right"></i></a></li>
+
+    <%- unless current_user == nil -%>
+      <li><%= link_to "My Favorites", user_favorite_gifs_path(current_user) %></li>
+      <li><%= link_to "Log out", logout_path, method: :delete %> </li>
+    <%- else -%>
+      <li><%= link_to "Log in", login_path, method: :get %> </li>
+    <%- end -%>
+    </ul>
+  </div>
+
+</nav>
     <%= yield %>
   </body>
 </html>

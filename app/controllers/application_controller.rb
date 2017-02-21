@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
-  helper_method :current_user
+  helper_method :current_user, :all_categories
 
   def current_user
     @user ||= User.find(session[:user_id]) if session[:user_id]
@@ -17,5 +17,9 @@ class ApplicationController < ActionController::Base
     else
       false
     end
+  end
+
+  def all_categories
+    categories = Category.all
   end
 end
